@@ -1,0 +1,10 @@
+Bank details: 
+Bank: First bank of the Bahamas
+Account: 0394756329203
+Sort: 22-33-21
+Account holder: John Doe
+Home address: 21, telegraph road, London
+Phone Number: 07724636438
+Current Balance: £2,345,543.45
+
+

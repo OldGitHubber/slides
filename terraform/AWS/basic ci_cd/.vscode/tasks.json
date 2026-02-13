@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Docker Image",
+      "type": "shell",
+      "command": "docker build -t oldgithubber/jokes:latest .",
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "Push Docker Image",
+      "type": "shell",
+      "command": "docker push oldgithubber/jokes:latest",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true // Make this default but depends on previous. It will run both then
+      },
+      "dependsOn": "Build Docker Image"
+    }
+  ]
+}

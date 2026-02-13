@@ -1,0 +1,2 @@
+This is just a text file for the sake of it.
+It demonstrates the secure copy triggered by a null-resource trigger

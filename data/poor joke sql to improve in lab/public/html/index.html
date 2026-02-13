@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="jokes.css" rel="stylesheet" type="text/css">
+  <title>Jokes</title>
+</head>
+
+<body>
+  <h1 id="jokeHeading">Joke Central</h1>
+
+  <div id="renderedContent">
+    <label for="ddJokeType">Choose a joke type:</label>
+    <select name="ddJokeType" id="ddJokeType">
+      <option value="any" selected="selected">Any</option>
+      <option value="general">General</option>
+      <option value="programming">Programming</option>
+      <option value="dad">Dad</option>
+      <option value="knock-knock">Knock Knock</option>
+      <option value="junk">Fail Me</option>
+    </select>
+
+    <br><br> 
+    <label for="numJokes">Number of jokes:</label>
+    <input type="number" id="numJokes" name="numJokes" value="1" min="1" step="1">
+    <br>
+
+    <button type="button" class="buttonClass" onclick="renderJoke()">Get Joke</button>
+    <div id="jokeText">
+      <p id="jokeSetup"></p>
+      <p id="jokePunchline"></p>
+    </div>
+  </div>
+  <script src="jokes.js"></script>
+</body>
+</html>

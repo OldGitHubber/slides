@@ -1,0 +1,13 @@
+services:
+  consumer:
+    image: oldgitdocker/consumer
+    build:
+      context: .
+    container_name: consumer
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+    - RMQ_HOST=rabbitmq 
+    #- RMQ_HOST=10.0.1.8  # Needs to be private IP of the producer if on VMs
+    ports:
+    - 4001:3001

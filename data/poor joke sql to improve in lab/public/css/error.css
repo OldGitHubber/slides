@@ -1,0 +1,14 @@
+body {
+  background-color: gray;
+  color: red;
+  text-align: center;
+  font-size: 2rem;
+}
+
+#errMsg {
+  color: white;
+}
+
+img {
+  width: 600px;
+}

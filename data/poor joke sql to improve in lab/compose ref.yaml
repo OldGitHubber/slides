@@ -1,0 +1,46 @@
+services:
+  jokes:
+    image: oldgitdocker/poor-joke # Image name to create when building or to use when creating container
+    # pull_policy: always            # Useful when dev on cloud - always pulls from docker hub so be careful if testing locally 
+    build:
+      context: . # Location of dockerfile and source files - project dir
+
+    container_name: jokes # Optionally name the container when built
+    restart: always # If app fails to start and kills container, this will try to restart it even if i stop it
+    env_file:
+      - .env
+
+    ports:
+      - ${JOKES_CONTAINER_PORT}:${JOKES_PORT}
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql # No tag so latest will be pulled
+    container_name: mysql
+    restart: unless-stopped # If it crashes, restart it unless it was me that stopped it
+    env_file:
+      - .env # All config we need for this container is in here
+    ports:
+      - ${MYSQL_CONTAINER_PORT}:${MYSQL_PORT}
+
+    healthcheck:
+      test: [ "CMD-SHELL", "mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -e 'SELECT 1'" ]
+      interval: 5s # Try the healthcheck this often. Wait, check, wait, check etc
+      timeout: 1s # Response to the healthcheck should complete in this time or fail
+      retries: 5 # Try this many times after failure before giving up completely
+
+    volumes:
+      - mysql:/var/lib/mysql # Persist database data outside the container. Map to where MySql expects data disk to be
+      # Any .sql or .sh scripts found in dir /docker-entrypoint-initdb.d will be executed when the db is created. Avoids using workbench to set up initial table
+      # Note: it's only called until database exists so if you fail during development, you may need to delete the volume and rebuild. e.g. docker compose down -v
+
+      # ***** Change path when deploying to remote *******
+      #  - /home/tony/dbinit:/docker-entrypoint-initdb.d  # Dest dir on the remote (has to be absolute path)
+      - ./dbinit:/docker-entrypoint-initdb.d # dbinit dir on local
+
+ # Named volumes should also be declared here. Making it global enables use by other services and can specify storage type
+volumes:
+  mysql:

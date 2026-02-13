@@ -1,0 +1,71 @@
+# Name Value pairs
+name: tony-nicol
+description: YAML-example
+
+# Object
+connection:
+  port: 9000
+  app: my-app
+
+# list
+list-name:
+- url: http://1235.com
+- url: http://1236.com
+- url: http://1236.com
+
+#List of objects. Each - is like an array element of properties
+services:
+- app: my-app
+  port: 9000
+  url: http://1234.com
+- app: my-app2
+  port: 3000
+  # List within a list. app is the element. my-app2 is the object name 
+  # in the element. port is an object member. urls is a member but is an array / list
+  urls:
+  - url: http://1235.com # - can be aligned to parent or indented
+  - url: http://1236.com # Whichever you choose they al need to be the same 
+  - url: http://1236.com # in that list
+
+  # If you have simple data types in your array / list, i.e. not an object, 
+  # you can write it like an array
+  ports: [3000, 3001, 3002, 3003]
+  # or
+  ports2:
+  - 3000
+  - 3001
+  - 3002
+  - 3003
+
+# Multiline string use the pipe | and indent. i.e. it has line breaks
+multilineString: |
+  cd myDir 
+  cp file to nextdir/file 
+
+# If you want a single line string, like a CLI command, to be treated as a single line use >
+singleLineString: >
+  ssh -i
+  mykeyfile.pem
+  tony@12.34.56
+
+# Environment variables. Access using $. The > is execute on one line
+command:
+- /bin/sh
+- -ec
+- >
+  mysql -h 127.0.0.1 -u 
+  root -p$MYSQL_PASSWORD
+
+# Using --- I can use the same object name without a clash maybe witt
+## different properties. i.e. Services has already been defined
+---
+services:
+- app: my-app
+  port: 9000
+  url: localhost
+
+
+
+
+
+

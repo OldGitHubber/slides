@@ -1,0 +1,10 @@
+vm-details = <<EOT
+
+    user       = tony
+    public_ip  = 51.11.160.60
+    private_ip = 10.0.1.4
+    Ports opened: 22, 4001
+    vm_size    = Standard_B1s
+    
+
+EOT

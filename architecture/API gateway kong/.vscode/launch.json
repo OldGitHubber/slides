@@ -1,0 +1,41 @@
+
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Yin",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/yin yang/yin/yin.js",
+      "cwd": "${workspaceFolder}/yin yang/yin",
+      // Each process needs a unique inspector port
+      "runtimeArgs": ["--inspect=9229"],
+      "env": {
+        "PORT": "3000",
+        "NODE_ENV": "dev"
+      },
+      "console": "integratedTerminal",
+    },
+    {
+      "name": "Yang",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/yin yang/yang/yang.js",
+      "cwd": "${workspaceFolder}/yin yang/yang",
+      "runtimeArgs": ["--inspect=9230"],
+      "env": {
+        "PORT": "3001",
+        "NODE_ENV": "dev"
+      },
+      "console": "integratedTerminal",
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Yin & Yang",
+      "configurations": ["Yin", "Yang"],
+      // stopAll means stop one and they both stop
+      "stopAll": true
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+resource_group_location = "uksouth"
+resource_group_name = "pub-sub-demo"
+subnet1_id = <sensitive>
+subnet2_id = <sensitive>
+vnet_name = "pub-sub-vnet"
+z_subnet_allocation = <<EOT
+
+
+
+  ***********************************
+  Subnet:apps CIDR:10.0.1.0/24
+  Subnet:bastion CIDR:10.0.2.0/24
+  ***********************************
+
+
+EOT

@@ -1,0 +1,46 @@
+_format_version: "3.0"
+# If strip path is true, any path matching entries in paths is removed
+# In this example, yin and yang have endpoints with the same name: callYin and callYang so using
+# kongIP/callYin would be ambiguous - which container does kong forward to?
+# By defining a path and strip_path = true, we can use kongIP/yin/callYin. /yin is stripped and the origin replaced
+# with the url, so: http://10.0.2.4:4000/callYin  i.e. no longer ambiguous
+# When calling the home page, kongIP/yin would be replaced with http://10.0.2.4:4000 because there ia a match to /yin 
+# so forwarded which would be intercepted by yin express.static middleware and return the html page. 
+# But when the browser requests the css with kongIP/yin.css it fails as there is no path to match to.
+# It is necessary to use kongIP/yin/ or kongIP/yin/yin.html so the browser has the full origin to request the 
+# css. i.e., kongIP/yin/yin.css
+services:
+ - name: Billy  # unique reference to the service - used by plugins for example. Call it what you want
+   url: http://10.0.2.4:4001 # The incoming origin is replaced by this if there is a match to the path
+  # url: http://host.docker.internal:4001
+  # url: http://host.docker.internal:4001 # enable container to access code running on windows
+  # url: http://yang:3001 # # Use this if you want to bridge the networks and containers
+   routes:
+    - name: bongo # or whatever you want as long as it's unique. It's just a label
+      paths:
+       - /yang           
+      strip_path: true  # Match on yang, but remove it from the incoming request  
+
+ - name: Yin 
+   url: http://10.0.2.4:4000
+   #url: http://host.docker.internal:4000 # host.docker.internal enables a container to access host services - i.e. app not in a container
+   #url: http://host.docker.internal:4000 # enable container to access code running on windows
+   #url: http://yin:3000 # Use this if you want to bridge the networks and containers
+   routes:
+    - name: Yin  
+      paths:
+       - /yin
+      strip_path: true
+
+# by default counters are stored in memory on the node
+# Redis can be used across multiple nodes so counter is consistent when load balancing
+plugins:
+ - name: rate-limiting
+   service: Billy
+   config:
+    minute: 9 
+
+ - name: rate-limiting
+   service: Yin
+   config:
+    minute: 6

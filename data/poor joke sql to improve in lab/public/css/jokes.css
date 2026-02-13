@@ -1,0 +1,79 @@
+#jokeHeading {
+  color: white;
+}
+
+#showJoke {
+  color: red;
+  font-size: 1.5rem;
+}
+
+/* Centre everything. Normally use a div and set the div properties */
+body {
+  background-color: black;
+  text-align: center;
+}
+
+.buttonClass {
+  font-size: 1.5rem;
+  background-color: blue;
+  color: white;
+  padding: 0.5em;
+  margin: 1em;
+}
+
+#renderedContent {
+  color: white;
+}
+
+#jokeText {
+  font-size: 1.5rem;
+}
+
+#jokeSetup {
+  color: red;
+}
+
+#jokePunchline {
+  color:rgb(0, 255, 0);
+}
+
+#numJokes {
+  width: 2rem;
+}
+
+
+/* Style the table and content */
+#jokesTable {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin-left: auto; /* centre the table on the screen */
+  margin-right: auto;
+  font-size: 1rem;
+}
+
+#jokesTable td, #jokesTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#jokesTable tr:nth-child(even){
+  background-color: blue;
+  color: yellow;
+}
+
+#jokesTable tr:nth-child(odd){
+  background-color: black;
+  color: yellow;
+}
+
+/* #jokesTable tr:hover {background-color: #ddd;} */
+
+#jokesTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: grey;
+  color: white;
+  font-size: 1.5rem;
+}

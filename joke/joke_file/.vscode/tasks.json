@@ -1,0 +1,25 @@
+// Use ctrl-sh-p tasks | run task | choose TnPush (if not listed start typing it)
+// docker run -d -p 4000:3000 --rm oldgitdocker/jokes to try it
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Docker Image",
+      "type": "shell",
+      "command": "docker build -t oldgitdocker/jokes:latest .",
+      "problemMatcher": [],
+      "group": "none"
+    },
+    {
+      "label": "TnPush",
+      "type": "shell",
+      "command": "docker push oldgitdocker/jokes:latest",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true // Make this default but depends on previous. It will run both then
+      },
+      "dependsOn": "Build Docker Image"
+    }
+  ]
+}

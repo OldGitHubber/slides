@@ -1,0 +1,35 @@
+
+// Set up front and backend debugging
+// Launch with F5. Choose node, chrome or debug full stack
+// Warning: if using environment variables, best to use .env as the 
+// debugger uses a different shell so you won't see them unles you
+// declare them in here which is pointless
+
+{
+ "version": "0.2.0",
+ "configurations": [
+   {
+     "name": "Node.js Server",               // Configure the node server for debugging
+     "type": "node",
+     "request": "launch",
+     "program": "${workspaceFolder}/app.js", // Path to your Node.js entry file to start server
+     "cwd": "${workspaceFolder}",            // Current working directory
+     "console": "integratedTerminal",
+     "internalConsoleOptions": "neverOpen"   // Don't want debug console to keep popping up
+   },
+   {
+     "name": "Chrome Frontend",              // Configure the chrome browser for debugging
+     "type": "chrome",
+     "request": "launch",
+     "url": "http://localhost:3000/index.html", // Front-end URL
+     "webRoot": "${workspaceFolder}/public/js", // Path to your front-end javascript
+     "sourceMaps": true                         // If using transpiler like for typescript, map ts <-> js
+   }
+ ],
+ "compounds": [
+   {
+     "name": "Debug Full Stack",
+     "configurations": ["Node.js Server", "Chrome Frontend"] // Use both
+   }
+ ]
+}

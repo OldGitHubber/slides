@@ -1,0 +1,4 @@
+node_modules
+.vscode
+create_infra
+jokes-exported.sql

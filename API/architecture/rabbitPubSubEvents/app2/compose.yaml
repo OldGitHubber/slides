@@ -1,0 +1,19 @@
+services:
+  app2:
+    build: .
+    image: oldgitdocker/app2
+    container_name: app2
+    ports:
+      - "4002:3002"
+    environment:
+      - APP2_PORT=3002
+     # - RABBITMQ_URL=amqp://admin:admin@localhost:5672
+     # - RABBITMQ_URL=amqp://admin:admin@host.docker.internal:5672
+      - RABBITMQ_URL=amqp://admin:admin@10.0.1.7:5672
+      - COMPONENTS_FILE=/usr/src/app/data/components.json
+    restart: always
+    volumes:
+      - data:/usr/src/app/data
+
+volumes:
+  data:

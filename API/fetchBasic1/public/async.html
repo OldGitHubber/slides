@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>API Links</title>
+  <script src="async.js" defer></script>
+  <script src="then.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="row">
+    <div class="linksCol">
+      <h1>API Links</h1>
+      <ol>
+        <li><a href="#" onclick="callApiAsync('/books')">Call /books (async/await)</a></li>
+        <li><a href="#" onclick="callApiAsync('/books?max=3')">Call /books?3 (async/await)</a></li>
+        <li><a href="#" onclick="callApiAsync('/books/Rowe')">Call /books/Rowe (async/await)</a></li>
+        <li><a href="#" onclick="callApiAsync('/book/Rowe')">Failed Call /books/Rowe (async/await)</a></li>
+        <br>
+        <li><a href="#" onclick="callApiAsync('/lengthyBlock/5000')">Lengthy blocking Call /lengthy/{ms}</a></li>
+        <li><a href="#" onclick="callApiAsync('/lengthyNoBlock/5000')">Lengthy non-blocking Call /lengthy/{ms}</a></li>
+        <li><a href="#" onclick="callCounter()">Do something in the front-end</a></li>
+        <br>
+        <li><a href="#" onclick="callApiThen('/books')">Call /books (.then)</a></li>
+        <li><a href="#" onclick="callApiThen('/books?max=4')">Call /books?4 (.then)</a></li>
+        <li><a href="#" onclick="callApiThen('/books/Quinn')">Call /books/Quinn (.then)</a></li>
+        <li><a href="#" onclick="callApiThen('/book/Quinn')">Failed Call /books/Quinn (.then)</a></li>
+      </ol>
+    </div>
+
+    <div class="responseCol">
+      <h1>Frontend not blocked:</h1>
+      <p id="counter" class="response"></p>
+      <h1>Response</h1>
+      <pre id="response" class="response"></pre>
+    </div>
+  </div>
+</body>
+
+</html>

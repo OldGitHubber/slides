@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 8px;
+}
+
+h1 {
+  font-size: 1rem;
+}
+
+select {
+  min-width: 100px;
+  width: auto;
+}

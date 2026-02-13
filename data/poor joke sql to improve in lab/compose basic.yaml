@@ -1,0 +1,23 @@
+services:
+  jokes:
+    image: oldgitdocker/poor-joke
+    build:
+      context: . 
+    
+    container_name: jokes
+    env_file:
+      - .env
+    
+    ports:
+      - ${JOKES_CONTAINER_PORT}:${JOKES_PORT}
+
+  mysql:
+    image: mysql 
+    container_name: mysql
+    restart: unless-stopped 
+    env_file:
+      - .env 
+    ports:
+      - ${MYSQL_CONTAINER_PORT}:${MYSQL_PORT}
+
+ 
